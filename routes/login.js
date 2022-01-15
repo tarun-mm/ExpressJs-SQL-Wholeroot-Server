@@ -10,8 +10,8 @@ var router = express.Router();
 
 router.get("/", function (req, res, next) {
   // const { email, pass } = req.body
-  console.log(email)
-  console.log(pass)
+  // console.log(email)
+  // console.log(pass)
   var Connection = require("tedious").Connection;
   var config = {
     server: "wholeroot.database.windows.net", //update me
