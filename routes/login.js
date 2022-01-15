@@ -34,7 +34,7 @@ router.post("/", function (req, res, next) {
     console.log("Connected");
 
     // sql
-    var request = new Request("SELECT username, passwords, usertype FROM [dbo].[allusers] WHERE EXISTS(SELECT username FROM [dbo].[allusers] WHERE username='"+username+"')", function (
+    var request = new Request("SELECT username, passwords, usertype FROM [dbo].[allusers] WHERE EXISTS(SELECT username FROM [dbo].[allusers] WHERE username='"+username+"' AND passwords='"+pass+"')", function (
       err,
       rowCount,
       rows
@@ -46,8 +46,9 @@ router.post("/", function (req, res, next) {
     }).on("doneInProc", function (rowCount, more, rows) {
       console.log(rowCount);
       console.log(rows);
+      console.log(rows.length)
       console.log(username, pass, usertype)
-      if(rows.length === 0 || rows[0][1]["value"] != pass || rows[0][2]["value"] != usertype) res.send({ auth: "False" }); 
+      if(rows.length === 0) res.send({ auth: "False" }); 
       else res.send({ auth: "True" })
       // connection.close();
       console.log("Close");
