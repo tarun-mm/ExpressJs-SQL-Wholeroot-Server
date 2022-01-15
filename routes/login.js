@@ -8,8 +8,8 @@ var router = express.Router();
 // })
 // connection.execSql(request);
 
-router.post("/", function (req, res, next) {
-  const { email, pass } = req.body
+router.get("/", function (req, res, next) {
+  // const { email, pass } = req.body
   console.log(email)
   console.log(pass)
   var Connection = require("tedious").Connection;
