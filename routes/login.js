@@ -9,7 +9,7 @@ var router = express.Router();
 // connection.execSql(request);
 
 router.post("/", function (req, res, next) {
-  const { username, pass } = req.body
+  const { usertype, username, pass } = req.body
   // console.log(email)
   // console.log(pass)
   var Connection = require("tedious").Connection;
@@ -41,7 +41,7 @@ router.post("/", function (req, res, next) {
     console.log("Connected");
 
     // sql
-    var request = new Request("SELECT username, passwords FROM [dbo].[allusers] WHERE EXISTS(SELECT username FROM [dbo].[allusers] WHERE username='"+username+"')", function (
+    var request = new Request("SELECT username, passwords, usertype FROM [dbo].[allusers] WHERE EXISTS(SELECT username FROM [dbo].[allusers] WHERE username='"+username+"')", function (
       err,
       rowCount,
       rows
@@ -53,8 +53,8 @@ router.post("/", function (req, res, next) {
     }).on("doneInProc", function (rowCount, more, rows) {
       console.log(rowCount);
       console.log(rows);
-      console.log(username, pass)
-      if(rows.length === 0 || rows[0][1]["value"] != pass) res.send({ auth: "False" }); 
+      console.log(username, pass, usertype)
+      if(rows.length === 0 || rows[0][1]["value"] != pass || rows[0][2]["value"] != usertype) res.send({ auth: "False" }); 
       else res.send({ auth: "True" })
       // connection.close();
       console.log("Close");
