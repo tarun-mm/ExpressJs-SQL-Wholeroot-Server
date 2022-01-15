@@ -8,7 +8,10 @@ var router = express.Router();
 // })
 // connection.execSql(request);
 
-router.get("/", function (req, res, next) {
+router.post("/", function (req, res, next) {
+  const { email, pass } = req.body
+  console.log(email)
+  console.log(pass)
   var Connection = require("tedious").Connection;
   var config = {
     server: "wholeroot.database.windows.net", //update me
@@ -49,7 +52,8 @@ router.get("/", function (req, res, next) {
       // console.log(rows)     
     }).on("doneInProc", function (rowCount, more, rows) {
       console.log(rowCount);
-      console.log(rows); 
+      console.log(rows);
+      res.send({ rows: rows }); 
       // connection.close();
       console.log("Close");
     });
@@ -58,7 +62,6 @@ router.get("/", function (req, res, next) {
   });
 
   connection.connect();
-  res.send("HI");
 });
 
 module.exports = router;
