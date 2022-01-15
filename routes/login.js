@@ -1,13 +1,6 @@
 var express = require("express");
 var router = express.Router();
 
-// request = new Request("EXEC intitutiontablebuilderteachers @TableName='test';", function(err){
-//     if (err){
-//         console.log(err);
-//     }
-// })
-// connection.execSql(request);
-
 router.post("/", function (req, res, next) {
   const { usertype, username, pass } = req.body
   // console.log(email)
