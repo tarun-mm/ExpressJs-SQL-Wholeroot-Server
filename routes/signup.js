@@ -42,7 +42,9 @@ router.post("/", function (req, res, next) {
       if (err) {
         console.log(err);
       }    
-    })
+    }).on("requestCompleted", function () {
+      res.send({ msg: "success"})
+    });
 
     var request4 = new Request("INSERT into institutions (InstitutionName, passwords, planopted, emailid) VALUES ('"+inst_name+"', '"+pass+"', '"+plan_opted+"', '"+email+"');", function (
       err,
@@ -94,7 +96,7 @@ router.post("/", function (req, res, next) {
     
     connection.execSql(request1);
 
-    res.send({ msg: "success"})
+    
   });
 
   connection.connect();
