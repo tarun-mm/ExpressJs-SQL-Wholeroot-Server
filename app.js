@@ -12,6 +12,7 @@ var signupRouter = require('./routes/signup');
 var registerstudentRouter = require('./routes/register_stu');
 var registerteacherRouter = require('./routes/register_tea');
 var allstudentsRouter = require('./routes/allstudents');
+var allteachersRouter = require('./routes/allteachers');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/signup', signupRouter);
 app.use('/registerstudent', registerstudentRouter);
 app.use('/registerteacher', registerteacherRouter);
 app.use('/allstudents', allstudentsRouter);
+app.use('/allteachers', allteachersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

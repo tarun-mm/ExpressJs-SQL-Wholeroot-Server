@@ -33,7 +33,7 @@ router.post("/", function (req, res, next) {
     console.log("Connected");
 
     // sql
-    var request = new Request("SELECT * FROM allusers WHERE institutionname='"+inst_name+"' AND usertype='student'", function (
+    var request = new Request("SELECT * FROM allusers WHERE institutionname='"+inst_name+"' AND usertype='teacher'", function (
       err,
       rowCount,
       rows
