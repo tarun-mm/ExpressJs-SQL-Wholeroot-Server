@@ -80,7 +80,7 @@ router.post("/", function (req, res, next) {
       
       console.log("Close");
     }).on("requestCompleted", function () {
-      if(usertype === 'institution') connection.execSql(request2);
+      if(usertype === 'institute') connection.execSql(request2);
     });
     
     connection.execSql(request1);
