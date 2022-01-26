@@ -48,8 +48,8 @@ router.post("/", function (req, res, next) {
     }).on("doneInProc", function (rowCount, more, rows) {
       console.log(rowCount);
       console.log(rows);
-      res.send({ plan: rows[0][2]["value"], auth: auth })
-      
+      if(auth === "True") res.send({ plan: rows[0][2]["value"], auth: auth })
+      else res.send({ auth: auth })
       // connection.close();
       console.log("Close");
     });
