@@ -1,4 +1,5 @@
 var express = require("express");
+const { resolveScale } = require("tedious/lib/data-types/decimal");
 var router = express.Router();
 
 router.post("/", function (req, res, next) {
@@ -69,12 +70,17 @@ router.post("/", function (req, res, next) {
       console.log(rows.length)
       console.log(username, pass, usertype)
 
-      if(rows.length === 0) auth = "False"; 
-      else auth = "True";
+      if(usertype === 'institution'){
+        if(rows.length === 0) auth = "False"; 
+        else auth = "True";
+      } else {
+        if(rows.length === 0) res.send({ auth: "False" }); 
+        else res.send({ auth: "True" })
+      }
       
       console.log("Close");
     }).on("requestCompleted", function () {
-      connection.execSql(request2);
+      if(usertype === 'institution') connection.execSql(request2);
     });
     
     connection.execSql(request1);
