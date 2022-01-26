@@ -70,7 +70,7 @@ router.post("/", function (req, res, next) {
       console.log(rows.length)
       console.log(username, pass, usertype)
 
-      if(usertype === 'institution'){
+      if(usertype === 'institute'){
         if(rows.length === 0) auth = "False"; 
         else auth = "True";
       } else {
