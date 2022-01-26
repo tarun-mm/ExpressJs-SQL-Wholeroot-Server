@@ -1,4 +1,5 @@
 var express = require("express");
+const { request } = require("../app");
 var router = express.Router();
 
 router.post("/", function (req, res, next) {
@@ -94,9 +95,8 @@ router.post("/", function (req, res, next) {
       connection.execSql(request2);
     });
     
-    connection.execSql(request1);
-
-    
+    if(plan_opted === "free") connection.execSql(request3);
+    else connection.execSql(request1);
   });
 
   connection.connect();
