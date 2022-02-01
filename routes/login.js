@@ -55,7 +55,7 @@ router.post("/", function (req, res, next) {
       console.log("Close");
     });
 
-    var request1 = new Request("SELECT username, passwords, usertype FROM [dbo].[allusers] WHERE EXISTS(SELECT username FROM [dbo].[allusers] WHERE username='"+username+"' AND passwords='"+pass+"')", function (
+    var request1 = new Request("SELECT username, passwords, usertype FROM [dbo].[allusers] WHERE EXISTS(SELECT username FROM [dbo].[allusers] WHERE username='"+username+"' AND passwords='"+pass+"');", function (
       err,
       rowCount,
       rows

@@ -34,6 +34,18 @@ router.post("/", function (req, res, next) {
     console.log("Connected");
 
     // sql
+
+    var request6 = new Request("exec [dbo].[subjectlisttablemaker] @TableName='"+inst_name+"';", function (
+      err,
+      rowCount,
+      rows
+    ) {
+      if (err) {
+        console.log(err);
+      }    
+    }).on("requestCompleted", function () {
+      res.send({ msg: "success"})
+    });
     
     var request5 = new Request("UPDATE institutions SET registeration_no = allusers.registeration_no FROM institutions, allusers WHERE allusers.usertype='institution' AND institutions.InstitutionName=allusers.institutionname;", function (
       err,
@@ -44,7 +56,8 @@ router.post("/", function (req, res, next) {
         console.log(err);
       }    
     }).on("requestCompleted", function () {
-      res.send({ msg: "success"})
+      if(plan_opted === "free") res.send({ msg: "success" })
+      else connection.execSql(request6);
     });
 
     var request4 = new Request("INSERT into institutions (InstitutionName, passwords, planopted, emailid) VALUES ('"+inst_name+"', '"+pass+"', '"+plan_opted+"', '"+email+"');", function (
