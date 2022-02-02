@@ -4,6 +4,8 @@ var router = express.Router();
 
 router.post("/", function (req, res, next) {
   const { subj_name, inst_name } = req.body
+  console.log(subj_name)
+  console.log(inst_name)
 
   var Connection = require("tedious").Connection;
   var config = {
@@ -34,7 +36,7 @@ router.post("/", function (req, res, next) {
     console.log("Connected");
 
     // sql
-    var request1 = new Request("Exec resourcemaker @TableName='"+subj_name+"', @institutename='"+inst_name+"';", function (err) {
+    var request1 = new Request("exec [dbo].[subjectmaker] @TableName='"+subj_name+"', @institutename='"+inst_name+"';", function (err) {
       if (err) {
         console.log(err);
       } 
