@@ -15,6 +15,10 @@ var allstudentsRouter = require('./routes/allstudents');
 var allteachersRouter = require('./routes/allteachers');
 var subjectmaker = require('./routes/make_subject');
 var chaptermaker = require('./routes/make_chapter');
+var allsubjects = require('./routes/allsubjects')
+var allchapters = require('./routes/allchapters');
+var unitmaker = require('./routes/make_unit');
+var allunits = require('./routes/allunits')
 
 var app = express();
 
@@ -39,6 +43,10 @@ app.use('/allstudents', allstudentsRouter);
 app.use('/allteachers', allteachersRouter);
 app.use('/makesubject', subjectmaker);
 app.use('/makechapter', chaptermaker);
+app.use('/allsubjects', allsubjects);
+app.use('/allchapters', allchapters);
+app.use('/makeunit', unitmaker);
+app.use('/allunits', allunits);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
